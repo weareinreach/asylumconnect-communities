@@ -48,10 +48,10 @@ const WelcomeHeader = withStyles({
     background: '#5073b3',
     textColor: 'white',
     height: 100,
-    textAlign: 'left'
-  },
-  "root .MuiTypography-headline-45": {
-    color: 'white'
+    textAlign: 'left',
+    ".MuiTypography-headline-45": {
+        color: 'white'
+      },
   },
 })(CardHeader);
 
@@ -96,6 +96,13 @@ const SideBarColumn = styled.div`
   padding: '0.5em';
 `;
 
+const ListContainer = styled.div`
+  margin-left: 16px;
+`;
+
+const TopPostsContainer = styled.div`
+    margin-left: 19px;
+`;
 
 const NewPostButton = withStyles({
   root: {
@@ -131,8 +138,27 @@ class MainPage extends React.Component {
     this.state = {
       categories: [],
       isAuthenticated: true,
-      newPostClicked: false
+      newPostClicked: false,
+      latestPosts: [
+        {"title":"Article1", "href":"/Article1"},
+        {"title":"Article1", "href":"/Article1"},
+        {"title":"Article1", "href":"/Article1"}
+      ],
+      communityPosts: [
+        {"title":"Meet an LGBTQ Asylee", "href":"Meet an LGBTQ Asylee"},
+        {"title":"Legal Questions", "href":"Legal Questions"},
+        {"title":"Leaving Your Country", "href":"Leaving Your Country"}
+      ],
+      categoryPosts: [
+        {"title":"Subcategory1", "href":"Subcategory1"},
+        {"title":"Subcategory1", "href":"Subcategory1"},
+        {"title":"Subcategory1", "href":"Subcategory1"}
+      ],
+      topPosts: [
+        {"title":"TopPost1", "href":"TopPost1"}
+      ]
     }
+
   }
 
   componentDidMount() {
@@ -140,6 +166,59 @@ class MainPage extends React.Component {
     this.initializeSubCategories("The Community");
     this.initializeSubCategories("Category");
   }
+
+  renderLatestPosts() {
+    const{latestPosts}=this.state;
+    var latestPostLinks = [];
+    for (var i = 0; i < latestPosts.length; i++)
+    {
+        latestPostLinks.push(
+           <a href={latestPosts[i].href}>P={latestPosts[i].title}<br/></a>
+        );
+    }
+    return latestPostLinks;
+  }
+
+  renderCommunityPosts(){
+    const{communityPosts}=this.state;
+        var communityPostLinks = [];
+        communityPostLinks.push(<SubCategoryDivider/>);
+        for (var i = 0; i < communityPosts.length; i++)
+        {
+            communityPostLinks.push(
+               <a href={communityPosts[i].href}>P={communityPosts[i].title}<br/></a>,
+               <SubCategoryDivider/>
+            );
+        }
+        return communityPostLinks;
+  }
+
+  renderCategoryPosts(){
+    const{categoryPosts}=this.state;
+          var categoryPostLinks = [];
+          categoryPostLinks.push(<SubCategoryDivider/>);
+          for (var i = 0; i < categoryPosts.length; i++)
+          {
+              categoryPostLinks.push(
+                 <a href={categoryPosts[i].href}>P={categoryPosts[i].title}<br/></a>,
+                 <SubCategoryDivider/>
+              );
+          }
+          return categoryPostLinks;
+  }
+
+  renderTopPosts() {
+      const{topPosts}=this.state;
+      var topPostLinks = [];
+      for (var i = 0; i < topPosts.length; i++)
+      {
+          topPostLinks.push(
+             <a href={topPosts[i].href}>P={topPosts[i].title}<br/></a>
+          );
+      }
+      return topPostLinks;
+    }
+
 
   initializeSubCategories(categoryTitle) {
       const category = {
@@ -242,31 +321,33 @@ class MainPage extends React.Component {
             <WelcomeHeader title="Welcome to the AsylumConnect Community!"/>
             <MainPageRow>
               <CategoryLayout>
-                <CardHeader title="Welcome"/>
-                <SubCategoryDivider/>
-                <a href="/Introduce Yourself">Introduce Yourself</a>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    <CardHeader title="Welcome"/>
+                    <SubCategoryDivider/>
+                    <a href="/Introduce Yourself">Introduce Yourself</a>
+                    <SubCategoryDivider/>
+                </ListContainer>
                 <CardHeader title="The Community"/>
-                <SubCategoryDivider/>
-                <a href="/Meet An LGBTQ Asylee">Meet An LGBTQ Asylee<br/></a>
-                <SubCategoryDivider/>
-                <a href="/Legal Questions">Legal Questions<br/></a>
-                <SubCategoryDivider/>
-                <a href="/Leaving Your Country">Leaving Your Country<br/></a>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    {this.renderCommunityPosts()}
+                </ListContainer>
                 <CardHeader title="Category"/>
-                <SubCategoryDivider/>
-                <a href="/Subcategory">Subcategory<br/></a>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    {this.renderCategoryPosts()}
+                </ListContainer>
               </CategoryLayout>
               <SideBarColumn>
               <NewPostButton onClick={this.handleNewPostClicked}>MAKE A NEW POST</NewPostButton>
               <SubCategoryDivider />
               <CardHeader title="Latest Posts" />
-              <a href="/PostTitle">PostTitle<br/></a>
+              <ListContainer>
+                {this.renderLatestPosts()}
+              </ListContainer>
               <SubCategoryDivider />
               <CardHeader title="Top Posts" />
-              <a href="/PostTitle">PostTitle<br/></a>
+              <TopPostsContainer>
+                {this.renderTopPosts()}
+              </TopPostsContainer>
               </SideBarColumn>
             </MainPageRow>
           </MainFlexCenterPage>

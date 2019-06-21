@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e93639f-1403-4e7b-add4-63970e5a2951" name="Default Changelist" comment="" />
+    <list default="true" id="8e93639f-1403-4e7b-add4-63970e5a2951" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/client/src/screens/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/screens/MainPage.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/screens/MainPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="257" column="37" lean-forward="true" selection-start-line="257" selection-start-column="37" selection-end-line="257" selection-end-column="37" />
+            <state relative-caret-position="264">
+              <caret line="324" column="20" selection-start-line="324" selection-start-column="20" selection-end-line="327" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -28,6 +30,9 @@
       <find>subcategories</find>
       <find>sidebar</find>
       <find>cardheader</find>
+      <find>posts</find>
+      <find>ltop</find>
+      <find>listContainer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,8 +165,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/screens/MainPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="257" column="37" lean-forward="true" selection-start-line="257" selection-start-column="37" selection-end-line="257" selection-end-column="37" />
+        <state relative-caret-position="264">
+          <caret line="324" column="20" selection-start-line="324" selection-start-column="20" selection-end-line="327" selection-end-column="41" />
         </state>
       </provider>
     </entry>
