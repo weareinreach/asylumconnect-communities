@@ -41,10 +41,19 @@ const LayoutLeft = styled.div`
 const WelcomeHeader = withStyles({
   root: {
     background: '#5073b3',
-    color: 'white',
-    height: 48,
+    textColor: 'white',
+    height: 100,
+    textAlign: 'left'
+  },
+  "root .MuiTypography-headline-45": {
+    color: 'white'
   },
 })(CardHeader);
+
+// const WelcomeHeader = styled.div`
+//   align: center;
+//   height: 100;
+// `;
 
 const MainPageRow = styled.div`
   display: flex;
@@ -63,7 +72,9 @@ const SubCategoryLayout = styled.div`
 
 const SubCategoryDivider = withStyles({
   root: {
-    marginBottom: "12px"
+    marginTop: "16px",
+    marginBottom: "16px"
+    //marginRight "1px"
   }
 })(Divider);
 
@@ -76,6 +87,7 @@ const SideBarColumn = styled.div`
   flex-direction: column;
   flex-grow: 1;
 `;
+
 
 const NewPostButton = withStyles({
   root: {
@@ -209,7 +221,7 @@ class MainPage extends React.Component {
           return (<div>{subCategoryLayouts}</div>);
         }
       }
-      return (<div>Loading</div>);
+      return (<div>Text</div>);
     }
 
     return(
@@ -223,17 +235,28 @@ class MainPage extends React.Component {
             <MainPageRow>
               <CategoryLayout>
                 <CardHeader title="Welcome"/>
-                <SubCategories categoryTitle="Welcome" categories={this.state.categories}/>
+                <SubCategoryDivider/>
+                <a href="/Introduce Yourself">Introduce Yourself<br/></a>
                 <SubCategoryDivider/>
                 <CardHeader title="The Community"/>
-                <SubCategories categoryTitle="The Community" categories={this.state.categories}/>
+                <SubCategoryDivider/>
+                <a href="/Meet An LGBTQ Asylee">Meet An LGBTQ Asylee<br/></a>
+                <a href="/Legal Questions">Legal Questions<br/></a>
+                <a href="/Leaving Your Country">Leaving Your Country<br/></a>
                 <SubCategoryDivider/>
                 <CardHeader title="Category"/>
-                <SubCategories categoryTitle="Category" categories={this.state.categories}/>
+                <SubCategoryDivider/>
+                <a href="/Subcategory">Subcategory<br/></a>
                 <SubCategoryDivider/>
               </CategoryLayout>
               <SideBarColumn>
-              <NewPostButton onClick={this.handleNewPostClicked}>Make a new post</NewPostButton>
+              <NewPostButton onClick={this.handleNewPostClicked}>MAKE A NEW POST</NewPostButton>
+              <SubCategoryDivider />
+              <CardHeader title="Latest Posts" />
+              <SubCategories categoryTitle="Latest Posts" categories={this.state.categories}/>
+              <SubCategoryDivider />
+              <CardHeader title="Top Posts" />
+              <SubCategories categoryTitle="Top Posts" categories={this.state.categories}/>
               </SideBarColumn>
             </MainPageRow>
           </MainFlexCenterPage>
