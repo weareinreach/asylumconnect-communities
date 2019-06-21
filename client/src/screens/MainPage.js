@@ -38,13 +38,27 @@ const LayoutLeft = styled.div`
   align: left;
 `;
 
+//const CardHeader = styled.div`
+//    display: flex;
+//    flex-direction:row;
+//`;
+
 const WelcomeHeader = withStyles({
   root: {
     background: '#5073b3',
-    color: 'white',
-    height: 48,
+    textColor: 'white',
+    height: 100,
+    textAlign: 'left',
+    ".MuiTypography-headline-45": {
+        color: 'white'
+      },
   },
 })(CardHeader);
+
+// const WelcomeHeader = styled.div`
+//   align: center;
+//   height: 100;
+// `;
 
 const MainPageRow = styled.div`
   display: flex;
@@ -63,7 +77,9 @@ const SubCategoryLayout = styled.div`
 
 const SubCategoryDivider = withStyles({
   root: {
-    marginBottom: "12px"
+    marginTop: "16px",
+    marginBottom: "16px"
+    //marginRight "1px"
   }
 })(Divider);
 
@@ -75,6 +91,17 @@ const SideBarColumn = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  borderRight: '0.1px solid black';
+  borderColor: 'black';
+  padding: '0.5em';
+`;
+
+const ListContainer = styled.div`
+  margin-left: 16px;
+`;
+
+const TopPostsContainer = styled.div`
+    margin-left: 19px;
 `;
 
 const NewPostButton = withStyles({
@@ -111,8 +138,27 @@ class MainPage extends React.Component {
     this.state = {
       categories: [],
       isAuthenticated: true,
-      newPostClicked: false
+      newPostClicked: false,
+      latestPosts: [
+        {"title":"Article1", "href":"/Article1"},
+        {"title":"Article1", "href":"/Article1"},
+        {"title":"Article1", "href":"/Article1"}
+      ],
+      communityPosts: [
+        {"title":"Meet an LGBTQ Asylee", "href":"Meet an LGBTQ Asylee"},
+        {"title":"Legal Questions", "href":"Legal Questions"},
+        {"title":"Leaving Your Country", "href":"Leaving Your Country"}
+      ],
+      categoryPosts: [
+        {"title":"Subcategory1", "href":"Subcategory1"},
+        {"title":"Subcategory1", "href":"Subcategory1"},
+        {"title":"Subcategory1", "href":"Subcategory1"}
+      ],
+      topPosts: [
+        {"title":"TopPost1", "href":"TopPost1"}
+      ]
     }
+
   }
 
   componentDidMount() {
@@ -120,6 +166,59 @@ class MainPage extends React.Component {
     this.initializeSubCategories("The Community");
     this.initializeSubCategories("Category");
   }
+
+  renderLatestPosts() {
+    const{latestPosts}=this.state;
+    var latestPostLinks = [];
+    for (var i = 0; i < latestPosts.length; i++)
+    {
+        latestPostLinks.push(
+           <a href={latestPosts[i].href}>P={latestPosts[i].title}<br/></a>
+        );
+    }
+    return latestPostLinks;
+  }
+
+  renderCommunityPosts(){
+    const{communityPosts}=this.state;
+        var communityPostLinks = [];
+        communityPostLinks.push(<SubCategoryDivider/>);
+        for (var i = 0; i < communityPosts.length; i++)
+        {
+            communityPostLinks.push(
+               <a href={communityPosts[i].href}>P={communityPosts[i].title}<br/></a>,
+               <SubCategoryDivider/>
+            );
+        }
+        return communityPostLinks;
+  }
+
+  renderCategoryPosts(){
+    const{categoryPosts}=this.state;
+          var categoryPostLinks = [];
+          categoryPostLinks.push(<SubCategoryDivider/>);
+          for (var i = 0; i < categoryPosts.length; i++)
+          {
+              categoryPostLinks.push(
+                 <a href={categoryPosts[i].href}>P={categoryPosts[i].title}<br/></a>,
+                 <SubCategoryDivider/>
+              );
+          }
+          return categoryPostLinks;
+  }
+
+  renderTopPosts() {
+      const{topPosts}=this.state;
+      var topPostLinks = [];
+      for (var i = 0; i < topPosts.length; i++)
+      {
+          topPostLinks.push(
+             <a href={topPosts[i].href}>P={topPosts[i].title}<br/></a>
+          );
+      }
+      return topPostLinks;
+    }
+
 
   initializeSubCategories(categoryTitle) {
       const category = {
@@ -209,7 +308,7 @@ class MainPage extends React.Component {
           return (<div>{subCategoryLayouts}</div>);
         }
       }
-      return (<div>Loading</div>);
+      return (<div>Text</div>);
     }
 
     return(
@@ -222,18 +321,33 @@ class MainPage extends React.Component {
             <WelcomeHeader title="Welcome to the AsylumConnect Community!"/>
             <MainPageRow>
               <CategoryLayout>
-                <CardHeader title="Welcome"/>
-                <SubCategories categoryTitle="Welcome" categories={this.state.categories}/>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    <CardHeader title="Welcome"/>
+                    <SubCategoryDivider/>
+                    <a href="/Introduce Yourself">Introduce Yourself</a>
+                    <SubCategoryDivider/>
+                </ListContainer>
                 <CardHeader title="The Community"/>
-                <SubCategories categoryTitle="The Community" categories={this.state.categories}/>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    {this.renderCommunityPosts()}
+                </ListContainer>
                 <CardHeader title="Category"/>
-                <SubCategories categoryTitle="Category" categories={this.state.categories}/>
-                <SubCategoryDivider/>
+                <ListContainer>
+                    {this.renderCategoryPosts()}
+                </ListContainer>
               </CategoryLayout>
               <SideBarColumn>
-              <NewPostButton onClick={this.handleNewPostClicked}>Make a new post</NewPostButton>
+              <NewPostButton onClick={this.handleNewPostClicked}>MAKE A NEW POST</NewPostButton>
+              <CardHeader title="Latest Posts" />
+              <ListContainer>
+              <SubCategoryDivider />
+                {this.renderLatestPosts()}
+                <SubCategoryDivider />
+              </ListContainer>
+              <CardHeader title="Top Posts" />
+              <TopPostsContainer>
+                {this.renderTopPosts()}
+              </TopPostsContainer>
               </SideBarColumn>
             </MainPageRow>
           </MainFlexCenterPage>
