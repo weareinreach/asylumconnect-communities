@@ -56,18 +56,44 @@ const InputStyle = styled.div`
 
 const SignUpButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
+    background: '#cc4747',
+    borderRadius: 100,
     border: 0,
     color: 'white',
-    height: 48,
+    height: 56,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    fontSize: '16px',
+    width: '300px',
+    margin: '32px auto',
   },
   label: {
     textTransform: 'capitalize',
   },
 })(Button);
+
+const PersonaButtons = withStyles({
+  root: {
+    background: '#cc4747',
+    borderRadius: 100,
+    border: 0,
+    color: 'white',
+    height: 56,
+    padding: '0 30px',
+    fontSize: '16px',
+    width: '300px',
+    margin: '32px auto',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
+const StackedContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
 
 //image container
 const ImageContainer = styled(PageContainer) `
@@ -81,8 +107,10 @@ class RegistrationScreen extends React.Component {
       username: '',
       password: '',
       confirmPassword: '',
+      personaIdentified: null,
       isAuthenticated: false,
     }
+    this.updatePersona = this.updatePersona.bind(this);
   }
 
   handleChange = e => {
@@ -111,19 +139,31 @@ class RegistrationScreen extends React.Component {
         }
       })
   }
+
   validateForm(){
     return(this.state.username.length > 0 &&
       this.state.password.length > 0 &&
       this.state.confirmPassword.length > 0 );
   }
 
+  updatePersona(persona) {
+    this.setState({
+      personaIdentified: persona,
+    });
+  }
+
   render(){
+    const { personaIdentified } = this.state; 
+
     const {isAuthenticated} = this.state;
     if(isAuthenticated){
       return(
         <Redirect to="./" />
       );
-    }
+    } 
+
+    console.log(this.state.personaIdentified);
+
     return(
       <PageContainer>
       <LoginContainer>
@@ -133,43 +173,51 @@ class RegistrationScreen extends React.Component {
             <Navbar/>
           </LoginFlexNavBar>
           <RegistrationFlexCenterPage>
-
             <LayoutLeft>
               <TextBox text= "AsylumConnect Community"/>
-              <TextBox text="Registration"/>
-
-
-                <form onSubmit={this.handleSubmit}>
-                  <InputStyle>
-                    <Input type="username"
-                    name="username"
-
-                    onChange={this.handleChange}
-                    value={this.state.username}
-                    placeholder="Username"/>
-
-                    <Input type="password"
-                    name="password"
-                    onChange={this.handleChange}
-                    value={this.state.password}
-                    placeholder="Password"/>
-
-                    <Input type="Password"
-                    name="confirmPassword"
-                    onChange={this.handleChange}
-                    value={this.state.confirmPassword}
-                    placeholder="ConfirmPassword"/>
-                  </InputStyle>
-
-                  <SignUpButton
-                  disabled={!this.validateForm}
-                  type="submit">
-                  Submit
-                  </SignUpButton>
-                </form>
-
-              <Button href='./'>Go Back to Login</Button>
-            </LayoutLeft>
+              <TextBox text={personaIdentified === 'seeker' ? "Asylum Seeker" : "Service Provider"}/>
+              <TextBox text="Sign Up"/>
+                {personaIdentified === null  &&   
+                  <StackedContainer>
+                    <PersonaButtons onClick={this.updatePersona.bind(this, 'seeker')}>I'm an asylum seeker</PersonaButtons>            
+                    <PersonaButtons onClick={this.updatePersona.bind(this, 'provider')}>I'm an Service Provider</PersonaButtons>          
+                  </StackedContainer>
+                 }
+                 {personaIdentified !== null && 
+                 <div>
+                   <form onSubmit={this.handleSubmit}>
+                     <InputStyle>
+                       <Input type="username"
+                       name="username"
+ 
+                       onChange={this.handleChange}
+                       value={this.state.username}
+                       placeholder={personaIdentified === 'seeker' ? "Email*" : "Organization Email*"}/>
+ 
+                       <Input type="password"
+                       name="password"
+                       onChange={this.handleChange}
+                       value={this.state.password}
+                       placeholder="Password"/>
+ 
+                       <Input type="Password"
+                       name="confirmPassword"
+                       onChange={this.handleChange}
+                       value={this.state.confirmPassword}
+                       placeholder="ConfirmPassword"/>
+                     </InputStyle>
+ 
+                     <SignUpButton
+                     disabled={!this.validateForm}
+                     type="submit">
+                     Submit
+                     </SignUpButton>
+                   </form>
+ 
+                  <Button href='./'>Go Back to Login</Button>
+                 </div>
+                 }
+            </LayoutLeft> 
           </RegistrationFlexCenterPage>
         </LoginFlexColumn>
       <ImageContainer>

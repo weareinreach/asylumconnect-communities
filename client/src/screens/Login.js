@@ -65,13 +65,15 @@ const PrivacyNote = styled.div`
 
 const LoginButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
+    background: '#cc4747',
+    borderRadius: 100,
     border: 0,
     color: 'white',
-    height: 48,
+    height: 56,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    fontSize: '16px',
+    width: '300px',
+    margin: '32px auto',
   },
   label: {
     textTransform: 'capitalize',
@@ -148,20 +150,21 @@ class LoginScreen extends React.Component {
                       <LoginTitle>
                         <TextBox text= "AsylumConnect Community"/>
                       </LoginTitle>
-                      <TextBox text="Login"/>
+                      <TextBox text="Log In"/>
                       <InputStyle>
-                        <Input type="text" name="username" onChange={this.handleChange} placeholder="Username"/>
-                        <Input type="password" name="password" onChange={this.handleChange} placeholder="Password"/>
+                        <Input type="text" name="username" onChange={this.handleChange} placeholder="Email*"/>
+                        <Input type="password" name="password" onChange={this.handleChange} placeholder="Password*"/>
                       </InputStyle>
                       <PrivacyNote>
                           <TextBox text={<p>By clicking Log In, you agree to <a href=''>One Degree's Privacy Policy</a> and <a href=''>Terms of Use</a>.</p>} />
                       </PrivacyNote>
                       <LoginButton onClick={this.handleSubmit}>Login</LoginButton>
-                      <a href='Registration'>Forgot Passoword?</a>|
-                      <a href='Registration'>Sign up for an Account</a>
+                      <div>
+                        <a href='Registration'>Forgot Passoword?</a>| 
+                        <a href='Registration'>Sign up for an Account</a>
+                        </div>
                   </LayoutLeft>
                 </LoginForm>
-
               </LoginFlexCenterPage>
             </LoginFlexColumn>
           <ImageContainer>
