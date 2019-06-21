@@ -75,64 +75,29 @@ const LoginButton = withStyles({
   },
 })(Button);
 
+const RegisterButton = withStyles({
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    borderRadius: 3,
+    border: 0,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
 //image container
 const ImageContainer = styled(PageContainer) `
   flex-basis:1;
   width:45%;
 `;
 
-
-class LoginScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      // confirmPassword: '',
-       isAuthenticated: false,
-       RegistrationRedirect: false
-    }
-  }
-  validateForm(response){
-    if(this.state.username.length > 0 && this.state.password.length > 0){
-    };
-  }
-
-  handleChange = e => {
-   this.setState({
-     [e.target.name] : e.target.value
-   })
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
-    axios({
-      url: '/api/login',
-      method: 'post',
-      data: {
-        username: this.state.username,
-        password: this.state.password,
-      },
-      }).then(response => {
-        console.log(response);
-        if( response.data.status === 'success' ){
-          this.setState({
-            isAuthenticated: true
-          })
-          window.location.href = "/Main";
-        }
-      })
-  }
-
-  render(){
-    const { isAuthenticated} = this.state
-
-    if(isAuthenticated) {
-      return  (
-        <Redirect to="/Main" />
-      )
-    }
-    return(
+function LandingScreen (props) {
+    return( 
         <PageContainer>
           <LoginContainer>
           </LoginContainer>
@@ -146,13 +111,9 @@ class LoginScreen extends React.Component {
                       <LoginTitle>
                         <TextBox text= "AsylumConnect Community"/>
                       </LoginTitle>
-                      <TextBox text="Login"/>
-                      <InputStyle>
-                        <Input type="text" name="username" onChange={this.handleChange} placeholder="Username"/>
-                        <Input type="password" name="password" onChange={this.handleChange} placeholder="Password"/>
-                      </InputStyle>
-                      <LoginButton onClick={this.handleSubmit}>Login</LoginButton>
-                      <a href='Registration'>Sign up for an Account</a>
+                      <TextBox text="A private online community for LGBTQ asylum seekers, asylees, lawyers, and other relevant service providers."/>
+                      <RegisterButton href='Registration' >Sign Up</RegisterButton>
+                      <LoginButton href='Login' >Log In</LoginButton>
                   </LayoutLeft>
                 </LoginForm>
 
@@ -160,11 +121,9 @@ class LoginScreen extends React.Component {
             </LoginFlexColumn>
           <ImageContainer>
               <img src={RainbowPaint} alt="sideImage"/>
-
           </ImageContainer>
         </PageContainer>
       );
-      }
   }
 
-export default LoginScreen;
+export default LandingScreen;
