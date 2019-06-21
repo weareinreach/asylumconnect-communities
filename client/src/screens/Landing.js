@@ -62,13 +62,15 @@ const LoginTitle = styled.div`
 
 const LoginButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
+    background: '#cc4747',
+    borderRadius: 100,
     border: 0,
     color: 'white',
-    height: 48,
+    height: 56,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    fontSize: '16px',
+    width: '300px',
+    margin: '32px auto',
   },
   label: {
     textTransform: 'capitalize',
@@ -77,13 +79,15 @@ const LoginButton = withStyles({
 
 const RegisterButton = withStyles({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    borderRadius: 3,
+    background: '#cc4747',
+    borderRadius: 100,
     border: 0,
     color: 'white',
-    height: 48,
+    height: 56,
     padding: '0 30px',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    fontSize: '16px',
+    width: '300px',
+    margin: '32px auto',
   },
   label: {
     textTransform: 'capitalize',
@@ -116,7 +120,6 @@ function LandingScreen (props) {
                       <LoginButton href='Login' >Log In</LoginButton>
                   </LayoutLeft>
                 </LoginForm>
-
               </LoginFlexCenterPage>
             </LoginFlexColumn>
           <ImageContainer>
