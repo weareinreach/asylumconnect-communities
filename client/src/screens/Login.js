@@ -59,6 +59,9 @@ const LoginTitle = styled.div`
   font-family: Roboto;
   font-weight: bold;
 `
+const PrivacyNote = styled.div`
+  padding: 20px 0px;
+`
 
 const LoginButton = withStyles({
   root: {
@@ -80,7 +83,6 @@ const ImageContainer = styled(PageContainer) `
   flex-basis:1;
   width:45%;
 `;
-
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -151,7 +153,11 @@ class LoginScreen extends React.Component {
                         <Input type="text" name="username" onChange={this.handleChange} placeholder="Username"/>
                         <Input type="password" name="password" onChange={this.handleChange} placeholder="Password"/>
                       </InputStyle>
+                      <PrivacyNote>
+                          <TextBox text={<p>By clicking Log In, you agree to <a href=''>One Degree's Privacy Policy</a> and <a href=''>Terms of Use</a>.</p>} />
+                      </PrivacyNote>
                       <LoginButton onClick={this.handleSubmit}>Login</LoginButton>
+                      <a href='Registration'>Forgot Passoword?</a>|
                       <a href='Registration'>Sign up for an Account</a>
                   </LayoutLeft>
                 </LoginForm>
