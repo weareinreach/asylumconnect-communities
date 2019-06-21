@@ -6,7 +6,7 @@ import RainbowPaint from '../assets/rainbow-paint.jpg'
 import TextBox from '../components/TextBox';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import axios from 'axios'
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 
 const PageContainer =styled.div`
@@ -54,7 +54,7 @@ const InputStyle = styled.div`
   flex-direction: column;
 `;
 
-const SignUpButton = withStyles({
+const SubmitButton = withStyles({
   root: {
     background: '#cc4747',
     borderRadius: 100,
@@ -100,11 +100,13 @@ const ImageContainer = styled(PageContainer) `
   flex-basis:1;
   width:45%;
 `;
+
 class RegistrationScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
+      displayName: '',
       password: '',
       confirmPassword: '',
       personaIdentified: null,
@@ -120,7 +122,6 @@ class RegistrationScreen extends React.Component {
   }
 
   handleSubmit = event => {
-    console.log('hello');
     event.preventDefault();
     axios({
       url: '/api/signup',
@@ -153,16 +154,13 @@ class RegistrationScreen extends React.Component {
   }
 
   render(){
-    const { personaIdentified } = this.state; 
+    const { personaIdentified, isAuthenticated } = this.state; 
 
-    const {isAuthenticated} = this.state;
     if(isAuthenticated){
       return(
-        <Redirect to="./" />
+        <Redirect to="./Main" />
       );
     } 
-
-    console.log(this.state.personaIdentified);
 
     return(
       <PageContainer>
@@ -206,14 +204,22 @@ class RegistrationScreen extends React.Component {
                        value={this.state.confirmPassword}
                        placeholder="ConfirmPassword"/>
                      </InputStyle>
+
+                     <InputStyle>
+                          <Input type="DisplayName"
+                          name="displayName"
+                          onChange={this.handleChange.bind(this)}
+                          value={this.state.displayName}
+                          placeholder="Public Display Name"/>
+                    </InputStyle>
  
-                     <SignUpButton
+                     <SubmitButton
+                     onClick={this.next.bind(this)}
                      disabled={!this.validateForm}
                      type="submit">
                      Submit
-                     </SignUpButton>
+                     </SubmitButton>
                    </form>
- 
                   <Button href='./'>Go Back to Login</Button>
                  </div>
                  }
@@ -228,46 +234,3 @@ class RegistrationScreen extends React.Component {
   }
 }
 export default RegistrationScreen;
-
-
-/*
-<form onSubmit={this.handleSubmit}>
-
-                  <FormGroup>
-                    <FormControlLabel>Email</FormControlLabel>
-                    <FormControl
-                    value={this.state.email}
-                    onChange={this.state.email}
-                    type = "email"
-
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
-                    <FormControlLabel>Password</FormControlLabel>
-
-                    <FormControl
-                    value ={this.state.password}
-                    onChange={this.state.password}
-                    type = "password"
-                    />
-                  </FormGroup>
-
-                  <FormGroup>
-                    <FormControlLabel>ConfirmPassword</FormControlLabel>
-
-                    <FormControl
-                    value ={this.state.confirmPassword}
-                    onChange={this.state.confirmPassword}
-                    type = "confirmPassword"
-                    />
-                  </FormGroup>
-
-                  <Button
-                    disabled={!this.validateForm}
-                    type="submit">
-                    Submit
-                  </Button>
-                </form>
-
-*/
