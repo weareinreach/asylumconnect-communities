@@ -253,10 +253,10 @@ class MainPage extends React.Component {
               <NewPostButton onClick={this.handleNewPostClicked}>MAKE A NEW POST</NewPostButton>
               <SubCategoryDivider />
               <CardHeader title="Latest Posts" />
-              <SubCategories categoryTitle="Latest Posts" categories={this.state.categories}/>
+              <a href="/PostTitle">PostTitle<br/></a>
               <SubCategoryDivider />
               <CardHeader title="Top Posts" />
-              <SubCategories categoryTitle="Top Posts" categories={this.state.categories}/>
+              <a href="/PostTitle">PostTitle<br/></a>
               </SideBarColumn>
             </MainPageRow>
           </MainFlexCenterPage>
