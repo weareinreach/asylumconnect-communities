@@ -136,6 +136,7 @@ class LoginScreen extends React.Component {
         <Redirect to="/Main" />
       )
     }
+
     return(
         <PageContainer>
           <LoginContainer>
