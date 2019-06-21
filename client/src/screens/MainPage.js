@@ -338,12 +338,12 @@ class MainPage extends React.Component {
               </CategoryLayout>
               <SideBarColumn>
               <NewPostButton onClick={this.handleNewPostClicked}>MAKE A NEW POST</NewPostButton>
-              <SubCategoryDivider />
               <CardHeader title="Latest Posts" />
               <ListContainer>
-                {this.renderLatestPosts()}
-              </ListContainer>
               <SubCategoryDivider />
+                {this.renderLatestPosts()}
+                <SubCategoryDivider />
+              </ListContainer>
               <CardHeader title="Top Posts" />
               <TopPostsContainer>
                 {this.renderTopPosts()}
