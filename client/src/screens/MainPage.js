@@ -38,6 +38,11 @@ const LayoutLeft = styled.div`
   align: left;
 `;
 
+//const CardHeader = styled.div`
+//    display: flex;
+//    flex-direction:row;
+//`;
+
 const WelcomeHeader = withStyles({
   root: {
     background: '#5073b3',
@@ -86,6 +91,9 @@ const SideBarColumn = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  borderRight: '0.1px solid black';
+  borderColor: 'black';
+  padding: '0.5em';
 `;
 
 
@@ -236,12 +244,14 @@ class MainPage extends React.Component {
               <CategoryLayout>
                 <CardHeader title="Welcome"/>
                 <SubCategoryDivider/>
-                <a href="/Introduce Yourself">Introduce Yourself<br/></a>
+                <a href="/Introduce Yourself">Introduce Yourself</a>
                 <SubCategoryDivider/>
                 <CardHeader title="The Community"/>
                 <SubCategoryDivider/>
                 <a href="/Meet An LGBTQ Asylee">Meet An LGBTQ Asylee<br/></a>
+                <SubCategoryDivider/>
                 <a href="/Legal Questions">Legal Questions<br/></a>
+                <SubCategoryDivider/>
                 <a href="/Leaving Your Country">Leaving Your Country<br/></a>
                 <SubCategoryDivider/>
                 <CardHeader title="Category"/>
