@@ -1,16 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components'
-import TextBox from '../components/TextBox';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import  { Redirect } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
-import CardHeader from '@material-ui/core/CardHeader';
 import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -32,13 +26,7 @@ const CreateForumFlexNavBar = styled.div`
 const CreateForumFlexCenterPage = styled.div`
   flex: 8;
   flex-direction: column;
-`;
-
-const LayoutLeft = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content: space-around;
-  align: left;
+  margin-bottom: 40px;
 `;
 
 const BackToACCommunityLayout = styled.div`
@@ -46,17 +34,19 @@ const BackToACCommunityLayout = styled.div`
   background-color: #5073b3;
 `;
 
-const BackToACCommunity = styled.div`
-  flex-basis: fit-content;
-  padding: 27px;
+const BackToACCommunity = styled.a`
+  padding: 20px;
   margin-left: 100px;
   font-size: 16px;
   color: white;
+  &:hover {
+    color: white;
+  }
 `;
 
 const CreateForumPageTitle = styled.div`
-  padding: 16px;
-  margin-top: 24px;
+  padding: 8px 16px;
+  margin-top: 8px;
   margin-left: 100px;
   font-size: 32px;
   font-weight: 700;
@@ -71,17 +61,16 @@ const CreateForumForm = styled.div`
   margin-left: 100px;
 `;
 
-
 const FormInputTitle = styled.div`
   font-size: 24px;
-  margin-top: 16px;
-  margin-bottom: 16px;
+  margin-top: 8px;
+  margin-bottom: 12px;
 `;
 
 const SingleSelectColumn = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 16px;
+  padding: 8px 16px;
   width: 320px;
 `;
 
@@ -105,6 +94,9 @@ const SubmitButton = withStyles({
     marginTop: '32px',
     marginBottom: '32px',
     marginLeft: 'auto',
+    '&:hover': {
+      backgroundColor: "#8D2A25",
+    },
   },
   label: {
     textTransform: 'capitalize',
@@ -116,6 +108,8 @@ class CreateForum extends React.Component {
     super(props);
     this.state = {
       // JSON Placeholder
+      selectedCategory: '',
+      selectedSubcategory: '',
       categories: [
         {
             title: "Welcome",
@@ -169,15 +163,13 @@ class CreateForum extends React.Component {
     }).then(response => {
       console.log(response);
       if( response.data.status === 'success' ){
-          
+
       }
     })
 
   }
 
   render(){
-    const {categories} = this.state;
-    const { classes } = this.props;
 
     return(
         <PageContainer>
@@ -186,7 +178,7 @@ class CreateForum extends React.Component {
           </CreateForumFlexNavBar>
           <CreateForumFlexCenterPage>
             <BackToACCommunityLayout>
-              <BackToACCommunity onClick={this.handleBack}>Back to AC Community</BackToACCommunity>
+              <BackToACCommunity href="/Main">{`< Back to AC Community`}</BackToACCommunity>
             </BackToACCommunityLayout>
             <CreateForumPageTitle>Create a New Post</CreateForumPageTitle>
             <CreateForumForm autoComplete="off">
@@ -196,9 +188,8 @@ class CreateForum extends React.Component {
                   <FormControl>
                     <InputLabel htmlFor="category-select">Select a category</InputLabel>
                     <Select
-                      value={this.state.category}
-                      onChange={this.handleChange('category')}
-                      input={<Input name="category" id="category-select" />}
+                      value={this.state.selectedCategory}
+                      onChange={this.handleChange('selectedCategory')}
                       >
                       <MenuItem value="">
                         <em>None</em>
@@ -214,10 +205,9 @@ class CreateForum extends React.Component {
                   <FormControl>
                     <InputLabel htmlFor="subcategory-select">Select a subcategory</InputLabel>
                     <Select
-                      value={this.state.subcategory}
-                      onChange={this.handleChange('subcategory')}
-                      input={<Input name="subcategory" id="subcategory-select" />}
-                      >
+                      value={this.state.selectedSubcategory}
+                      onChange={this.handleChange('selectedSubcategory')}
+                    >
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
@@ -237,7 +227,7 @@ class CreateForum extends React.Component {
                   onChange={this.handleChange('title')}
                   variant="outlined"
                 />
-                <FormInputTitle>Body</FormInputTitle>
+                <FormInputTitle>Content</FormInputTitle>
                 <TextField
                   id="body"
                   label="Start typing your post"

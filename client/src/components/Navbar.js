@@ -1,24 +1,28 @@
 import React from 'react'
 //import Avatar from'@material-ui/core/Avatar'
 import styled from 'styled-components'
+import Logo from '../assets/AsylumConnectLogo.png'
 import {NavLink}  from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+import { NONAME } from 'dns';
+
 
 const NavbarArea  = styled.div`
-  width:858.5px;
-  height: 100px;
-
+  width: 100%;
+  padding: 8px 0;
 `;
+
 const NavFlexbox = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 4%;
+  align-items: center;
 `;
+
 const NavItems = styled.div`
-  width: 73.6px;
-  height: 16px;
-  font-family: Roboto;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -31,6 +35,38 @@ const NavItems = styled.div`
   }
 
 `;
+const NavButton = withStyles({
+  root: {
+    background: 'white',
+    borderRadius: 100,
+    border: '2px solid',
+    borderColor: '#5073B3',
+    height: '30px',
+    padding: '0 30px',
+    fontSize: '16px',
+    width: 'auto',
+    margin: '15px auto',
+    '&:hover': {
+      backgroundColor: "#334A7C",
+      borderColor: '#334A7C',
+
+    },
+    '&:hover a': {
+        color: 'white',
+        textDecoration: 'none',
+    }
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+
+})(Button);
+
+const NavLogo = styled.div`
+  img {
+    width: 45px;
+  }
+`;
 
 const Navbar = () =>{
 
@@ -38,6 +74,9 @@ const Navbar = () =>{
       <NavbarArea>
         <NavFlexbox>
 
+          <NavLogo>
+          <img src={Logo}/>
+            </NavLogo>
           <NavItems>
             <NavLink to="/"> ABOUT US</NavLink>
           </NavItems>
@@ -55,7 +94,10 @@ const Navbar = () =>{
           </NavItems>
 
           <NavItems>
+            <NavButton>
             <NavLink to="/"> FIND RESOURCES</NavLink>
+              </NavButton>
+
           </NavItems>
 
         </NavFlexbox>

@@ -15,6 +15,7 @@ const FooterArea  = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  bottom: 0;
   width: 100%;
   height: 132px;
   background-color: #5073b3;
@@ -35,24 +36,17 @@ const SocialMediaIcon = styled.img`
   margin: 12px;
 `;
 
-const SocialMediaHeader = styled.div`
+const SectionHeader = styled.div`
   color: white;
-  font-family: Roboto;
-  font-size: 18px;
-  margin: 12px auto;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  margin: 16px auto;
 `;
 
 const NewsletterColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const NewsletterHeader = styled.div`
-  color: white;
-  font-family: Roboto;
-  font-size: 18px;
-  margin: 12px;
 `;
 
 const NewsletterButton = withStyles({
@@ -64,7 +58,10 @@ const NewsletterButton = withStyles({
     height: 32,
     padding: '0 30px',
     fontSize: '16px',
-    width: 'fit-content'
+    width: 'fit-content',
+    '&:hover': {
+      backgroundColor: "#8D2A25",
+    },
   },
   label: {
     textTransform: 'capitalize',
@@ -76,7 +73,7 @@ const Footer = () =>{
   return(
       <FooterArea>
         <ConnectWithAsylumColumn>
-          <SocialMediaHeader>Connect with AsylumConnect</SocialMediaHeader>
+          <SectionHeader>Connect with AsylumConnect</SectionHeader>
           <SocialMediaRow>
             <a href="https://www.facebook.com/asylumconnect"><SocialMediaIcon src={Facebook} /></a>
             <a href="https://twitter.com/AsylumConnect"><SocialMediaIcon src={Twitter} /></a>
@@ -87,7 +84,7 @@ const Footer = () =>{
           </SocialMediaRow>
         </ConnectWithAsylumColumn>
         <NewsletterColumn>
-          <NewsletterHeader>Stay Updated on AsylumConnect's Lifesaving Initiatives</NewsletterHeader>
+          <SectionHeader>Stay Updated on AsylumConnect's Lifesaving Initiatives</SectionHeader>
           <NewsletterButton onClick={() => { window.location.href = "https://www.asylumconnect.org/follow-us-subscribe"; }}>Subscribe to Our Newsletter</NewsletterButton>
         </NewsletterColumn>
       </FooterArea>

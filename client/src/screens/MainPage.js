@@ -83,15 +83,19 @@ const NewPostButton = withStyles({
     borderRadius: 100,
     border: 0,
     color: 'white',
-    height: 56,
-    padding: '0 30px',
+    height: 48,
+    padding: '0 20px',
     fontSize: '16px',
-    width: '300px',
-    margin: '32px auto',
+    width: '240px',
+    margin: '28px auto',
+    '&:hover': {
+      backgroundColor: "#8D2A25",
+    }
   },
   label: {
     textTransform: 'capitalize',
   },
+
 })(Button);
 
 const LogOutButton = withStyles({

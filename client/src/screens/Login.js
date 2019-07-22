@@ -12,19 +12,16 @@ import { withStyles } from '@material-ui/core/styles';
 const PageContainer =styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width:100vw;
   height:100vh;
 `;
-//login container
-const LoginContainer = styled(PageContainer)`
-  flex:2;
-`;
 
 const LoginFlexColumn = styled.div`
-  display:flex;
+  display: flex;
   flex-direction: column;
+  width: 100%;
   background-color: white;
-
 `;
 const LoginFlexNavBar = styled(LoginFlexColumn)`
   display: flex;
@@ -56,7 +53,7 @@ const InputStyle = styled.div`
 
 const LoginTitle = styled.div`
   font-size: 24px;
-  font-family: Roboto;
+  font-family: "Open Sans", sans-serif;
   font-weight: bold;
 `
 
@@ -77,12 +74,10 @@ const LoginButton = withStyles({
 
 //image container
 const ImageContainer = styled(PageContainer) `
-  flex-basis:1;
-  width:45%;
+  flex-basis: 1;
+  width: 40%;
+  overflow: hidden;
 `;
-
-
-
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -136,8 +131,6 @@ class LoginScreen extends React.Component {
     }
     return(
         <PageContainer>
-          <LoginContainer>
-          </LoginContainer>
             <LoginFlexColumn>
               <LoginFlexNavBar>
                 <Navbar/>
