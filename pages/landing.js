@@ -1,57 +1,55 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react'
+import styled from 'styled-components'
+import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core/styles'
 
-import TextBox from '../components/TextBox';
-import Navbar from '../components/Navbar';
-
-import styles from './styles/landing.css';
+import TextBox from '../components/TextBox'
+import Navbar from '../components/Navbar'
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 100vh;
-`;
+  display: flex
+  flex-direction: row
+  width: 100vw
+  height: 100vh
+`
 
 const LoginContainer = styled(PageContainer)`
   flex: 2;
-`;
+`
 
 const LoginFlexColumn = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-`;
+`
 
 const LoginFlexNavBar = styled(LoginFlexColumn)`
   display: flex;
   flex: 1;
-`;
+`
 
 const LoginFlexCenterPage = styled(LoginFlexColumn)`
   flex: 8;
-`;
+`
 
 const LoginForm = styled(LoginFlexCenterPage)`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+`
 
 const LayoutLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align: left;
-`;
+`
 
 const LoginTitle = styled.div`
   font-size: 24px;
   font-family: Roboto;
   font-weight: bold;
-`;
+`
 
 const LoginButton = withStyles({
   root: {
@@ -68,7 +66,7 @@ const LoginButton = withStyles({
   label: {
     textTransform: 'capitalize',
   },
-})(Button);
+})(Button)
 
 const RegisterButton = withStyles({
   root: {
@@ -85,13 +83,13 @@ const RegisterButton = withStyles({
   label: {
     textTransform: 'capitalize',
   },
-})(Button);
+})(Button)
 
 //image container
 const ImageContainer = styled(PageContainer)`
   flex-basis: 1;
   width: 45%;
-`;
+`
 
 export default () => (
   <PageContainer>
@@ -107,7 +105,7 @@ export default () => (
             <LoginTitle>
               <TextBox text='AsylumConnect Community' />
             </LoginTitle>
-            <TextBox className='test' text='A private online community for LGBTQ asylum seekers, asylees, lawyers, and other relevant service providers.' />
+            <TextBox text='A private online community for LGBTQ asylum seekers, asylees, lawyers, and other relevant service providers.' />
             <RegisterButton href='Registration'>Sign Up</RegisterButton>
             <LoginButton href='Login'>Log In</LoginButton>
           </LayoutLeft>
@@ -118,4 +116,4 @@ export default () => (
       <img src={`/static/rainbow-paint.jpg`} alt='sideImage' />
     </ImageContainer>
   </PageContainer>
-);
+)
